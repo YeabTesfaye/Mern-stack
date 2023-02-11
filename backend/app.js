@@ -3,6 +3,7 @@ const express   = require('express')
 const morgan = require('morgan')
 const { errorHandler } = require('./api/middlewares/errorMiddleware')
 const goalroutes = require('./api/routes/goalRoutes')
+const userRouter = require('./api/routes/userRoute')
 
 const app = express()
 
@@ -24,6 +25,7 @@ app.use((req,res,next) => {
 })
 
 app.use('/api/gaols', goalroutes)
+app.use('/api/users' , userRouter)
 app.use(errorHandler)
 
 module.exports = app
