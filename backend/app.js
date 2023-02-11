@@ -24,7 +24,7 @@ app.use((req,res,next) => {
     next()
 })
 
-app.use('/api/gaols', goalroutes)
+app.use('/api/goals', goalroutes)
 app.use('/api/users' , userRouter)
 app.use(errorHandler)
 
