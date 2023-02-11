@@ -6,8 +6,6 @@ router.get('/', getGaols)
 
 router.post('/', setGoals)
 
-router.get('/:id', getSpecificGoals)
-
 router.patch('/:id', updateGoals)
 
 router.delete('/:id', delteGoals)
