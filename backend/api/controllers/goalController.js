@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Goal = require('../models/goalModlel')
 const User = require('../models/userModel')
+const { validateGoal } = require('./validator')
 // @desc get Goals
 // @route GET /api/goals
 // @access public
@@ -13,10 +14,7 @@ const getGaols  = asyncHandler( async (req,res) => {
 // @route POST /api/gaols
 // @access private
 const setGoals = asyncHandler( async(req,res) => {
-    if(!req.body.text){
-        res.status(404)
-        throw new Error('plase add a text filed')
-    }
+     validateGoal(req.body);
     const goal = await  Goal.create({
         text : req.body.text,
         user: req.user.id
@@ -57,6 +55,7 @@ const updateGoals = asyncHandler(async(req,res) => {
 // @route DELETE /api/goals/:id
 // @access private
 const delteGoals = asyncHandler( async (req,res) =>{
+   
     const {id} = req.params
     const goal = await Goal.findById(id)
 

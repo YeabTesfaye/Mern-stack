@@ -1,12 +1,18 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
-    name : {type : String,  required : [true , 'plase add a name filed']},
-    email : {type : String ,  required : [true , 'please add an email field']},
-    password : {type : String , required : [true , 'please add a password filed']}
-}, {
-    timestamps : true
-})
+require("dotenv").config();
+
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true, minlength: 3, maxlength: 30 },
+  email: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 200,
+    unique: true,
+  },
+  password: { type: String, required: true, minlength: 3, maxlength: 1024 },
+});
+module.exports = mongoose.model("User", userSchema);
 
 
-module.exports = mongoose.model('User', userSchema)
